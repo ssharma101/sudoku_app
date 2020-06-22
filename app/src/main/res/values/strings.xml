@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">Sudoku</string>
+
+    <!-- Block 9 Strings -->
+    <string name="button_9_9">9</string>
+    <string name="button_9_8">8</string>
+    <string name="button_9_7">7</string>
+    <string name="button_9_6">6</string>
+    <string name="button_9_5">5</string>
+    <string name="button_9_4">4</string>
+    <string name="button_9_3">3</string>
+    <string name="button_9_2">2</string>
+    <string name="button_9_1">1</string>
+
+    <!-- Block 8 Strings -->
+    <string name="button_8_9">9</string>
+    <string name="button_8_8">8</string>
+    <string name="button_8_7">7</string>
+    <string name="button_8_6">6</string>
+    <string name="button_8_5">5</string>
+    <string name="button_8_4">4</string>
+    <string name="button_8_3">3</string>
+    <string name="button_8_2">2</string>
+    <string name="button_8_1">1</string>
+
+    <!-- Block 7 Strings -->
+    <string name="button_7_9">9</string>
+    <string name="button_7_8">8</string>
+    <string name="button_7_7">7</string>
+    <string name="button_7_6">6</string>
+    <string name="button_7_5">5</string>
+    <string name="button_7_4">4</string>
+    <string name="button_7_3">3</string>
+    <string name="button_7_2">2</string>
+    <string name="button_7_1">1</string>
+
+    <!-- Block 6 Strings -->
+    <string name="button_6_9">9</string>
+    <string name="button_6_8">8</string>
+    <string name="button_6_7">7</string>
+    <string name="button_6_6">6</string>
+    <string name="button_6_5">5</string>
+    <string name="button_6_4">4</string>
+    <string name="button_6_3">3</string>
+    <string name="button_6_2">2</string>
+    <string name="button_6_1">1</string>
+
+    <!-- Block 5 Strings -->
+    <string name="button_5_9">9</string>
+    <string name="button_5_8">8</string>
+    <string name="button_5_7">7</string>
+    <string name="button_5_6">6</string>
+    <string name="button_5_5">5</string>
+    <string name="button_5_4">4</string>
+    <string name="button_5_3">3</string>
+    <string name="button_5_2">2</string>
+    <string name="button_5_1">1</string>
+
+    <!-- Block 4 Strings -->
+    <string name="button_4_9">9</string>
+    <string name="button_4_8">8</string>
+    <string name="button_4_7">7</string>
+    <string name="button_4_6">6</string>
+    <string name="button_4_5">5</string>
+    <string name="button_4_4">4</string>
+    <string name="button_4_3">3</string>
+    <string name="button_4_2">2</string>
+    <string name="button_4_1">1</string>
+
+    <!-- Block 3 Strings -->
+    <string name="button_3_9">9</string>
+    <string name="button_3_8">8</string>
+    <string name="button_3_7">7</string>
+    <string name="button_3_6">6</string>
+    <string name="button_3_5">5</string>
+    <string name="button_3_4">4</string>
+    <string name="button_3_3">3</string>
+    <string name="button_3_2">2</string>
+    <string name="button_3_1">1</string>
+
+    <!-- Block 2 Strings -->
+    <string name="button_2_9">9</string>
+    <string name="button_2_8">8</string>
+    <string name="button_2_7">7</string>
+    <string name="button_2_6">6</string>
+    <string name="button_2_5">5</string>
+    <string name="button_2_4">4</string>
+    <string name="button_2_3">3</string>
+    <string name="button_2_2">2</string>
+    <string name="button_2_1">1</string>
+
+    <!-- Block 1 Strings -->
+    <string name="button_1_9">9</string>
+    <string name="button_1_8">8</string>
+    <string name="button_1_7">7</string>
+    <string name="button_1_6">6</string>
+    <string name="button_1_5">5</string>
+    <string name="button_1_4">4</string>
+    <string name="button_1_3">3</string>
+    <string name="button_1_2">2</string>
+    <string name="button_1_1">1</string>
+
+    <!-- Buttons -->
+    <string name="button1">1</string>
+    <string name="button2">2</string>
+    <string name="button3">3</string>
+    <string name="button4">4</string>
+    <string name="button5">5</string>
+    <string name="button6">6</string>
+    <string name="button7">7</string>
+    <string name="button8">8</string>
+    <string name="button9">9</string>
+
+    <!--- Others -->
+    <string name="finishButton">Done!</string>
+    <string name="clearButton">Clear All</string>
+    <string name="clearOneButton">Clear</string>
+    <string name="IntroText">Welcome! Please choose a level!</string>
+
+    <string name="easyButton">Easy</string>
+    <string name="medButton">Medium</string>
+    <string name="hardButton">Hard</string>
+
+
+
+</resources>
