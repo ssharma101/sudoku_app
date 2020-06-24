@@ -13,10 +13,14 @@
             android:name="com.example.sudoku.MainActivity"
             android:label="activity_main"
             tools:layout="@layout/activity_main" />
-        <activity
+        <fragment
             android:id="@+id/startActivity"
             android:name="com.example.sudoku.StartActivity"
             android:label="StartActivity"
-            tools:layout="@layout/opening_screen"/>
+            tools:layout="@layout/opening_screen">
+            <action
+                android:id="@+id/action_startActivity_to_mainActivity"
+                app:destination="@id/mainActivity" />
+        </fragment>
     </navigation>
 </navigation>

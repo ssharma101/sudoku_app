@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<ArrayList<Integer>> solution = new ArrayList<ArrayList<Integer>>();
     private ArrayList<Integer> unsolvedNums = new ArrayList<Integer>();
     private ArrayList<Integer> checkNums = new ArrayList<Integer>();
-
+    private int[] difficultyNums = {4, 6, 8};
+    int difficultyNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +36,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        Canvas canvas = new Canvas();
 //        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 //        screenView.draw(canvas, paint);
-         addNumButtons();
+        Bundle currBundle = getIntent().getExtras();
+        Integer diffLevel = currBundle.getInt("difficulty");
+        difficultyNum = difficultyNums[diffLevel];
+        addNumButtons();
         setButtonListeners();
 
     }
-
-
 
     public List<ArrayList<Integer>> createPuzzle() {
         List<ArrayList<Integer>> aList = new ArrayList<ArrayList<Integer>>();
@@ -196,19 +198,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if ((temp.contains(newNum)) || (currCol.contains(newNum))) {
                     newNum = 1;
                 }
-                while ((temp.contains(newNum)) || (currCol.contains(newNum))) {
-                    System.out.println(newNum);
-                    if (temp.contains(newNum)) {
-                        System.out.println("Temp contains!");
-                    }
-                    if (currRow.contains(newNum)) {
-                        System.out.println("Curr row contains!");
-                    }
-                    if (currCol.contains(newNum)) {
-                        System.out.println("Curr col contains!");
-                    }
+                while (isValid(currCol, currRow, currList, newNum)) {
                     newNum = (newNum + 1);
                 }
+
+
 //                System.out.println(newNum);
                 currList.add(newNum);
                 temp.add(newNum);
@@ -228,6 +222,102 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    private List<ArrayList<Integer>> makeNewPuzzle2() {
+        List<ArrayList<Integer>> newPuzzle = new ArrayList<ArrayList<Integer>>();
+        List<HashSet<Integer>> allRows = new ArrayList<HashSet<Integer>>();
+
+        HashSet<Integer> row0 = new HashSet<Integer>();
+        allRows.add(row0);
+        HashSet<Integer> row1 = new HashSet<Integer>();
+        allRows.add(row1);
+        HashSet<Integer> row2 = new HashSet<Integer>();
+        allRows.add(row2);
+        HashSet<Integer> row3 = new HashSet<Integer>();
+        allRows.add(row3);
+        HashSet<Integer> row4 = new HashSet<Integer>();
+        allRows.add(row4);
+        HashSet<Integer> row5 = new HashSet<Integer>();
+        allRows.add(row5);
+        HashSet<Integer> row6 = new HashSet<Integer>();
+        allRows.add(row6);
+        HashSet<Integer> row7 = new HashSet<Integer>();
+        allRows.add(row7);
+        HashSet<Integer> row8 = new HashSet<Integer>();
+        allRows.add(row8);
+
+        List<HashSet<Integer>> allCols = new ArrayList<HashSet<Integer>>();
+        HashSet<Integer> col0 = new HashSet<Integer>();
+        allCols.add(col0);
+        HashSet<Integer> col1 = new HashSet<Integer>();
+        allCols.add(col1);
+        HashSet<Integer> col2 = new HashSet<Integer>();
+        allCols.add(col2);
+        HashSet<Integer> col3 = new HashSet<Integer>();
+        allCols.add(col3);
+        HashSet<Integer> col4 = new HashSet<Integer>();
+        allCols.add(col4);
+        HashSet<Integer> col5 = new HashSet<Integer>();
+        allCols.add(col5);
+        HashSet<Integer> col6 = new HashSet<Integer>();
+        allCols.add(col6);
+        HashSet<Integer> col7 = new HashSet<Integer>();
+        allCols.add(col7);
+        HashSet<Integer> col8 = new HashSet<Integer>();
+        allCols.add(col8);
+
+
+
+        Random rand = new Random();
+//        HashSet<Integer> temp = new HashSet<Integer>();
+        for (int i = 0; i < 9; i++) {
+            HashSet<Integer> temp = new HashSet<Integer>();
+
+            ArrayList<Integer> currList = new ArrayList<Integer>();
+//            System.out.println();
+//            System.out.println("i: " + i);
+            for (int j = 0; j < 9; j++) {
+                int rowI = (i/3) + (j/3) + (i/3)*2;
+                HashSet<Integer> currRow = allRows.get(rowI);
+//                System.out.println("rowI: " + rowI);
+                int colI = (i%3) + (j%3) + (i%3)*2;
+//                System.out.println("colI: "+ colI);
+                HashSet<Integer> currCol = allCols.get(colI);
+
+                int newNum = rand.nextInt(9) + 1;
+                System.out.println("NewNum: " + newNum);
+
+                if ((temp.contains(newNum)) || (currCol.contains(newNum))) {
+                    newNum = 1;
+                }
+                while (isValid(currCol, currRow, currList, newNum)) {
+                    newNum = (newNum + 1);
+                }
+
+
+//                System.out.println(newNum);
+                currList.add(newNum);
+                temp.add(newNum);
+                currCol.add(newNum);
+                currRow.add(newNum);
+            }
+//            System.out.println();
+//            System.out.println();
+            temp.clear();
+            newPuzzle.add(currList);
+        }
+
+
+        solution = newPuzzle;
+
+        return newPuzzle;
+    }
+
+    private boolean isValid(HashSet<Integer> col, HashSet<Integer> row, ArrayList<Integer> box, int num) {
+        if (col.contains(num) || row.contains(num) || box.contains(num)) {
+            return true;
+        }
+        return false;
+    }
 
     private List<ArrayList<Integer>> makeDiagPuzzle() {
         List<ArrayList<Integer>> newPuzzle = new ArrayList<ArrayList<Integer>>();
@@ -397,8 +487,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setButtonListeners() {
-        List<ArrayList<Integer>> currPuzzle = makeNewPuzzle()
-                ;
+        List<ArrayList<Integer>> currPuzzle = makeNewPuzzle();
 
         for (int i = 1; i <= 9; i++) {
             HashSet<Integer> randIndices = createRand();
@@ -440,8 +529,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private HashSet<Integer> createRand() {
 //        ArrayList<Integer> setNums = new ArrayList<Integer>();
         HashSet<Integer> currRandNums = new HashSet<Integer>();
+        int getDifficultyNum;
         Random rand = new Random();
-        int numRandNums = rand.nextInt(5);
+        int numRandNums = rand.nextInt(difficultyNum);
+        while(numRandNums == 0) {
+            numRandNums = rand.nextInt(difficultyNum);
+        }
         int curr = 0;
         while (curr < numRandNums) {
             int currRand = rand.nextInt(10);
@@ -477,6 +570,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int currID = v.getId();
         if (currID == R.id.finishButton) {
             checkSolution();
+            Button finishButton = (Button) findViewById(currID);
+            finishButton.setEnabled(false);
         } else if (currID == R.id.clearButton) {
             for (int i = 0; i < unsolvedNums.size(); i++) {
                 System.out.println(unsolvedNums.get(i));
@@ -484,6 +579,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 currButton.setText("");
                 currButton.setBackgroundColor(Color.TRANSPARENT);
             }
+            Button finishButton = (Button) findViewById(R.id.finishButton);
+            finishButton.setEnabled(true);
+
         } else if (currID == R.id.clearOneButton) {
             if (selectedButtonID != null) {
                 Button changeButton = (Button) findViewById(selectedButtonID);
@@ -516,11 +614,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             selectedButtonID = currID;
             if (selectedButton != null) {
-                selectedButton.setBackgroundColor(Color.TRANSPARENT);
+                if (selectedButton.getText() == "") {
+                    selectedButton.setBackgroundColor(Color.TRANSPARENT);
+                } else {
+                    selectedButton.setBackgroundColor(Color.LTGRAY);
+                }
             }
             Button currButton = (Button) findViewById(selectedButtonID);
             selectedButton = currButton;
-            currButton.setBackgroundColor(Color.LTGRAY);
+            currButton.setBackgroundColor(Color.YELLOW);
 
         }
 
@@ -538,9 +640,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 currButton.setText(actualNum);
                 currButton.setBackgroundColor(Color.RED);
             }
-
-
-
         }
 
     }
