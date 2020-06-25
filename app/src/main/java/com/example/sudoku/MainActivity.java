@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int[] difficultyNums = {4, 6, 8};
     int difficultyNum;
 
+    private List<ArrayList<Integer>> allCols = new ArrayList<ArrayList<Integer>>();
+    private List<ArrayList<Integer>> allRows = new ArrayList<ArrayList<Integer>>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,68 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return aList;
     }
 
-    private List<ArrayList<Integer>> makePuzzle() {
-        List<ArrayList<Integer>> newPuzzle = new ArrayList<ArrayList<Integer>>();
-        List<HashSet<Integer>> allColumns = new ArrayList<HashSet<Integer>>();
-        HashSet<Integer> row0 = new HashSet<Integer>();
-        allColumns.add(row0);
-        HashSet<Integer> row1 = new HashSet<Integer>();
-        allColumns.add(row1);
-        HashSet<Integer> row2 = new HashSet<Integer>();
-        allColumns.add(row2);
-        HashSet<Integer> row3 = new HashSet<Integer>();
-        allColumns.add(row3);
-        HashSet<Integer> row4 = new HashSet<Integer>();
-        allColumns.add(row4);
-        HashSet<Integer> row5 = new HashSet<Integer>();
-        allColumns.add(row5);
-        HashSet<Integer> row6 = new HashSet<Integer>();
-        allColumns.add(row6);
-        HashSet<Integer> row7 = new HashSet<Integer>();
-        allColumns.add(row7);
-        HashSet<Integer> row8 = new HashSet<Integer>();
-        allColumns.add(row8);
-
-        List<HashSet<Integer>> allBoxes = new ArrayList<HashSet<Integer>>();
-        HashSet<Integer> box0 = new HashSet<Integer>();
-        allBoxes.add(box0);
-        HashSet<Integer> box1 = new HashSet<Integer>();
-        allBoxes.add(box1);
-        HashSet<Integer> box2 = new HashSet<Integer>();
-        allBoxes.add(box2);
-        HashSet<Integer> box3 = new HashSet<Integer>();
-        allBoxes.add(box3);
-        HashSet<Integer> box4 = new HashSet<Integer>();
-        allBoxes.add(box4);
-        HashSet<Integer> box5 = new HashSet<Integer>();
-        allBoxes.add(box5);
-        HashSet<Integer> box6 = new HashSet<Integer>();
-        allBoxes.add(box6);
-        HashSet<Integer> box7 = new HashSet<Integer>();
-        allBoxes.add(box7);
-        HashSet<Integer> box8 = new HashSet<Integer>();
-        allBoxes.add(box8);
-
-        Random rand = new Random();
-        for (int i = 0; i < 9; i++) {
-            ArrayList<Integer> currList = new ArrayList<Integer>();
-            HashSet<Integer> currNums = new HashSet<Integer>();
-            for (int j = 0; j < 9; j++) {
-                HashSet<Integer> currCol = allColumns.get(j);
-                int newNum = rand.nextInt(9) + 1;
-                while ((currNums.contains(newNum)) && (currCol.contains(newNum))) {
-                    newNum = rand.nextInt(9) + 1;
-                }
-                currNums.add(newNum);
-                currList.add(newNum);
-                currCol.add(newNum);
-            }
-            newPuzzle.add(currList);
-        }
-
-
-        return newPuzzle;
-    }
 
     private List<ArrayList<Integer>> makeNewPuzzle() {
         List<ArrayList<Integer>> newPuzzle = new ArrayList<ArrayList<Integer>>();
@@ -222,96 +164,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private List<ArrayList<Integer>> makeNewPuzzle2() {
-        List<ArrayList<Integer>> newPuzzle = new ArrayList<ArrayList<Integer>>();
-        List<HashSet<Integer>> allRows = new ArrayList<HashSet<Integer>>();
-
-        HashSet<Integer> row0 = new HashSet<Integer>();
-        allRows.add(row0);
-        HashSet<Integer> row1 = new HashSet<Integer>();
-        allRows.add(row1);
-        HashSet<Integer> row2 = new HashSet<Integer>();
-        allRows.add(row2);
-        HashSet<Integer> row3 = new HashSet<Integer>();
-        allRows.add(row3);
-        HashSet<Integer> row4 = new HashSet<Integer>();
-        allRows.add(row4);
-        HashSet<Integer> row5 = new HashSet<Integer>();
-        allRows.add(row5);
-        HashSet<Integer> row6 = new HashSet<Integer>();
-        allRows.add(row6);
-        HashSet<Integer> row7 = new HashSet<Integer>();
-        allRows.add(row7);
-        HashSet<Integer> row8 = new HashSet<Integer>();
-        allRows.add(row8);
-
-        List<HashSet<Integer>> allCols = new ArrayList<HashSet<Integer>>();
-        HashSet<Integer> col0 = new HashSet<Integer>();
-        allCols.add(col0);
-        HashSet<Integer> col1 = new HashSet<Integer>();
-        allCols.add(col1);
-        HashSet<Integer> col2 = new HashSet<Integer>();
-        allCols.add(col2);
-        HashSet<Integer> col3 = new HashSet<Integer>();
-        allCols.add(col3);
-        HashSet<Integer> col4 = new HashSet<Integer>();
-        allCols.add(col4);
-        HashSet<Integer> col5 = new HashSet<Integer>();
-        allCols.add(col5);
-        HashSet<Integer> col6 = new HashSet<Integer>();
-        allCols.add(col6);
-        HashSet<Integer> col7 = new HashSet<Integer>();
-        allCols.add(col7);
-        HashSet<Integer> col8 = new HashSet<Integer>();
-        allCols.add(col8);
-
-
-
-        Random rand = new Random();
-//        HashSet<Integer> temp = new HashSet<Integer>();
-        for (int i = 0; i < 9; i++) {
-            HashSet<Integer> temp = new HashSet<Integer>();
-
-            ArrayList<Integer> currList = new ArrayList<Integer>();
-//            System.out.println();
-//            System.out.println("i: " + i);
-            for (int j = 0; j < 9; j++) {
-                int rowI = (i/3) + (j/3) + (i/3)*2;
-                HashSet<Integer> currRow = allRows.get(rowI);
-//                System.out.println("rowI: " + rowI);
-                int colI = (i%3) + (j%3) + (i%3)*2;
-//                System.out.println("colI: "+ colI);
-                HashSet<Integer> currCol = allCols.get(colI);
-
-                int newNum = rand.nextInt(9) + 1;
-                System.out.println("NewNum: " + newNum);
-
-                if ((temp.contains(newNum)) || (currCol.contains(newNum))) {
-                    newNum = 1;
-                }
-                while (isValid(currCol, currRow, currList, newNum)) {
-                    newNum = (newNum + 1);
-                }
-
-
-//                System.out.println(newNum);
-                currList.add(newNum);
-                temp.add(newNum);
-                currCol.add(newNum);
-                currRow.add(newNum);
-            }
-//            System.out.println();
-//            System.out.println();
-            temp.clear();
-            newPuzzle.add(currList);
-        }
-
-
-        solution = newPuzzle;
-
-        return newPuzzle;
-    }
-
     private boolean isValid(HashSet<Integer> col, HashSet<Integer> row, ArrayList<Integer> box, int num) {
         if (col.contains(num) || row.contains(num) || box.contains(num)) {
             return true;
@@ -319,175 +171,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    private List<ArrayList<Integer>> makeDiagPuzzle() {
-        List<ArrayList<Integer>> newPuzzle = new ArrayList<ArrayList<Integer>>();
-        newPuzzle = createPuzzle();
-        List<HashSet<Integer>> allRows = new ArrayList<HashSet<Integer>>();
-
-        HashSet<Integer> row0 = new HashSet<Integer>();
-        allRows.add(row0);
-        HashSet<Integer> row1 = new HashSet<Integer>();
-        allRows.add(row1);
-        HashSet<Integer> row2 = new HashSet<Integer>();
-        allRows.add(row2);
-        HashSet<Integer> row3 = new HashSet<Integer>();
-        allRows.add(row3);
-        HashSet<Integer> row4 = new HashSet<Integer>();
-        allRows.add(row4);
-        HashSet<Integer> row5 = new HashSet<Integer>();
-        allRows.add(row5);
-        HashSet<Integer> row6 = new HashSet<Integer>();
-        allRows.add(row6);
-        HashSet<Integer> row7 = new HashSet<Integer>();
-        allRows.add(row7);
-        HashSet<Integer> row8 = new HashSet<Integer>();
-        allRows.add(row8);
-
-        List<HashSet<Integer>> allCols = new ArrayList<HashSet<Integer>>();
-        HashSet<Integer> col0 = new HashSet<Integer>();
-        allCols.add(col0);
-        HashSet<Integer> col1 = new HashSet<Integer>();
-        allCols.add(col1);
-        HashSet<Integer> col2 = new HashSet<Integer>();
-        allCols.add(col2);
-        HashSet<Integer> col3 = new HashSet<Integer>();
-        allCols.add(col3);
-        HashSet<Integer> col4 = new HashSet<Integer>();
-        allCols.add(col4);
-        HashSet<Integer> col5 = new HashSet<Integer>();
-        allCols.add(col5);
-        HashSet<Integer> col6 = new HashSet<Integer>();
-        allCols.add(col6);
-        HashSet<Integer> col7 = new HashSet<Integer>();
-        allCols.add(col7);
-        HashSet<Integer> col8 = new HashSet<Integer>();
-        allCols.add(col8);
-
-
-
-        Random rand = new Random();
-//        HashSet<Integer> temp = new HashSet<Integer>();
-        HashSet<Integer> temp = new HashSet<Integer>();
-        ArrayList<Integer> currList = new ArrayList<Integer>();
-        for (int i = 0; i < 9; i++) {
-            int rowI = (i / 3) + (0 / 3) + (i / 3) * 2;
-            HashSet<Integer> currRow = allRows.get(rowI);
-            int colI = (i % 3) + (0 % 3) + (i % 3) * 2;
-            HashSet<Integer> currCol = allCols.get(colI);
-            int newNum = rand.nextInt(9) + 1;
-            if ((temp.contains(newNum)) || (currRow.contains(newNum)) || (currCol.contains(newNum))) {
-                newNum = 1;
-            }
-            while ((temp.contains(newNum)) || (currRow.contains(newNum)) || (currCol.contains(newNum))) {
-
-                newNum = (newNum + 1);
-
-            }
-            temp.add(newNum);
-            currCol.add(newNum);
-            currRow.add(newNum);
-        }
-
-        temp.clear();
-        newPuzzle.add(0, currList);
-        currList.clear();
-
-        for (int i = 0; i < 9; i++) {
-            int rowI = (i / 3) + (4 / 3) + (i / 3) * 2;
-            HashSet<Integer> currRow = allRows.get(rowI);
-            int colI = (i % 3) + (4 % 3) + (i % 3) * 2;
-            HashSet<Integer> currCol = allCols.get(colI);
-            int newNum = rand.nextInt(9) + 1;
-            if ((temp.contains(newNum)) || (currRow.contains(newNum)) || (currCol.contains(newNum))) {
-                newNum = 1;
-            }
-            while ((temp.contains(newNum)) || (currRow.contains(newNum)) || (currCol.contains(newNum))) {
-
-                newNum = (newNum + 1);
-
-            }
-            temp.add(newNum);
-            currCol.add(newNum);
-            currRow.add(newNum);
-        }
-        temp.clear();
-        newPuzzle.add(4, currList);
-        currList.clear();
-
-        for (int i = 0; i < 9; i++) {
-            int rowI = (i / 3) + (8 / 3) + (i / 3) * 2;
-            HashSet<Integer> currRow = allRows.get(rowI);
-            int colI = (i % 3) + (8 % 3) + (i % 3) * 2;
-            HashSet<Integer> currCol = allCols.get(colI);
-            int newNum = rand.nextInt(9) + 1;
-            if ((temp.contains(newNum)) || (currRow.contains(newNum)) || (currCol.contains(newNum))) {
-                newNum = 1;
-            }
-            while ((temp.contains(newNum)) || (currRow.contains(newNum)) || (currCol.contains(newNum))) {
-
-                newNum = (newNum + 1);
-
-            }
-            temp.add(newNum);
-            currCol.add(newNum);
-            currRow.add(newNum);
-        }
-        temp.clear();
-        newPuzzle.add(8, currList);
-        currList.clear();
-
-        for (int i = 1; i < 8; i = i+1) {
-            if (i == 4) {
-                i = i + 1;
-            } else {
-
-//            System.out.println();
-//            System.out.println("i: " + i);
-                for (int j = 0; j < 9; j++) {
-                    int rowI = (i / 3) + (j / 3) + (i / 3) * 2;
-                    HashSet<Integer> currRow = allRows.get(rowI);
-//                System.out.println("rowI: " + rowI);
-                    int colI = (i % 3) + (j % 3) + (i % 3) * 2;
-//                System.out.println("colI: "+ colI);
-                    HashSet<Integer> currCol = allCols.get(colI);
-
-                    int newNum = 1;
-                    System.out.println("NewNum: " + newNum);
-
-
-                    while ((temp.contains(newNum)) || (currRow.contains(newNum)) || (currCol.contains(newNum))) {
-                        System.out.println(newNum);
-                        if (temp.contains(newNum)) {
-                            System.out.println("Temp contains!");
-                        }
-                        if (currRow.contains(newNum)) {
-                            System.out.println("Curr row contains!");
-                        }
-                        if (currCol.contains(newNum)) {
-                            System.out.println("Curr col contains!");
-                        }
-                        newNum = (newNum + 1);
-                    }
-//                System.out.println(newNum);
-                    currList.add(newNum);
-                    temp.add(newNum);
-                    currCol.add(newNum);
-                    currRow.add(newNum);
-                }
-//            System.out.println();
-//            System.out.println();
-                temp.clear();
-                newPuzzle.add(i, currList);
-            }
-        }
-
-        solution = newPuzzle;
-
-        return newPuzzle;
-    }
-
     private void setButtonListeners() {
-        List<ArrayList<Integer>> currPuzzle = makeNewPuzzle();
+        makeAnPuzzle();
 
         for (int i = 1; i <= 9; i++) {
             HashSet<Integer> randIndices = createRand();
@@ -500,13 +185,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     currButton.setText("");
                     currButton.setOnClickListener(this);
                     currButton.setBackgroundColor(Color.TRANSPARENT);
-                    checkNums.add(currPuzzle.get(i-1).get(j-1));
+                    checkNums.add(solution.get(i-1).get(j-1));
                 } else {
                     currButton.setEnabled(false);
                     currButton.setTextColor(Color.BLACK);
 
                     currButton.setBackgroundColor(Color.TRANSPARENT);
-                    currButton.setText(String.valueOf(currPuzzle.get(i-1).get(j-1)));
+                    currButton.setText(String.valueOf(solution.get(i-1).get(j-1)));
                 }
 //                currButton.setOnClickListener(this);
 
@@ -641,6 +326,210 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 currButton.setBackgroundColor(Color.RED);
             }
         }
+
+    }
+
+
+    public void makeAnPuzzle() {
+        ArrayList<Integer> b1 =  new ArrayList<>(Arrays.asList(2, 1, 5, 9, 8, 6, 7, 3, 4));
+        ArrayList<Integer> b2 =  new ArrayList<>(Arrays.asList(3, 7, 9, 1, 2, 4, 8, 5, 6));
+        ArrayList<Integer> b3 =  new ArrayList<>(Arrays.asList(8, 6, 4, 3, 5, 7, 2, 1, 9));
+        ArrayList<Integer> b4 =  new ArrayList<>(Arrays.asList(4, 5, 2, 8, 6, 9, 3, 7, 1));
+        ArrayList<Integer> b5 =  new ArrayList<>(Arrays.asList(7, 8, 1, 5, 4, 3, 6, 9, 2));
+        ArrayList<Integer> b6 =  new ArrayList<>(Arrays.asList(6, 9, 3, 1, 7, 2, 4, 8, 5));
+        ArrayList<Integer> b7 =  new ArrayList<>(Arrays.asList(5, 2, 7, 6, 4, 8, 1, 9, 3));
+        ArrayList<Integer> b8 =  new ArrayList<>(Arrays.asList(4, 1, 8, 9, 3, 7, 2, 6, 5));
+        ArrayList<Integer> b9 =  new ArrayList<>(Arrays.asList(9, 3, 6, 5, 2, 1, 7, 4, 8));
+
+        solution.add(b1);
+        solution.add(b2);
+        solution.add(b3);
+        solution.add(b4);
+        solution.add(b5);
+        solution.add(b6);
+        solution.add(b7);
+        solution.add(b8);
+        solution.add(b9);
+
+        Random rand = new Random();
+        initializeSets();
+        addToRowCol();
+
+
+
+        for (int i = 0; i < 3; i++) {
+            int randomRow = rand.nextInt(3) + i*3;
+
+            int randomRow2 = rand.nextInt(3) + i*3;
+            while (randomRow == randomRow2) {
+                randomRow = rand.nextInt(3) + i*3;
+            }
+            ArrayList<Integer> a = allRows.get(randomRow);
+            ArrayList<Integer> b = allRows.get(randomRow2);
+            allRows.set(randomRow, b);
+            allRows.set(randomRow2, a);
+        }
+        rowToBox();
+        boxToCol();
+        for (int j = 0; j < 3; j++) {
+            int randomCol = rand.nextInt(3) + j*3;
+
+            int randomCol2 = rand.nextInt(3) + j*3;
+            while (randomCol == randomCol2) {
+                randomCol = rand.nextInt(3) + j*3;
+            }
+            ArrayList<Integer> a = allRows.get(randomCol);
+            ArrayList<Integer> b = allRows.get(randomCol2);
+            allRows.set(randomCol, b);
+            allRows.set(randomCol2, a);
+        }
+//        colToBox();
+
+    }
+
+
+    private void rowToBox() {
+        for (int i = 0; i < 9; i++) {
+            ArrayList<Integer> curr = solution.get(i);
+            for (int j = 0; j < 9; j++) {
+                int rowI = (i/3) + (j/3) + (i/3)*2;
+                ArrayList<Integer> currRow = allRows.get(rowI);
+                int k = (j % 3) + 3*(i%3);
+                curr.set(j, currRow.get(k));
+
+            }
+            solution.set(i, curr);
+        }
+
+    }
+
+    private void boxToCol() {
+        for (int i = 0; i < 9; i++) {
+            ArrayList<Integer> curr = solution.get(i);
+
+            for (int j = 0; j < 9; j++) {
+                int colI = (i%3) + (j%3) + (i%3)*2;
+                ArrayList<Integer> currCol = allCols.get(colI);
+                int k = 3*(i / 3) + (j/3);
+                currCol.set(k, curr.get(j));
+                allCols.set(i, currCol);
+//                System.out.println("Curr colI: "+ colI + " and k is " +currCol.get(k) +  " and j is: " + j);
+            }
+        }
+//        printCols();
+    }
+
+    private void printCols() {
+        for (int i = 0; i < allCols.size(); i++) {
+            ArrayList<Integer> currCol = allCols.get(i);
+            for (int j = 0; j < currCol.size(); j++) {
+                System.out.print(currCol.get(j) + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private void colToBox() {
+//        printCols();
+        for (int i = 0; i < 9; i++) {
+            ArrayList<Integer> curr = solution.get(i);
+
+            for (int j = 0; j < 9; j++) {
+                int colI = (i%3) + (j%3) + (j%3)*2;
+                ArrayList<Integer> currCol = allCols.get(colI);
+                int k = 3*(i / 3) + (j/3);
+                curr.set(j, currCol.get(k));
+                System.out.println("Curr colI: "+ colI + " and k is " +(k) +  " and j is: " + j);
+            }
+            solution.set(i, curr);
+        }
+
+    }
+
+    private void addToRowCol() {
+        for (int i = 0; i < 9; i++) {
+            ArrayList<Integer> curr = solution.get(i);
+
+            for (int j = 0; j < 9; j++) {
+                int rowI = (i/3) + (j/3) + (i/3)*2;
+                ArrayList<Integer> currRow = allRows.get(rowI);
+                int colI = (i%3) + (j%3) + (i%3)*2;
+                ArrayList<Integer> currCol = allCols.get(colI);
+                currRow.add(curr.get(j));
+                currCol.add(curr.get(j));
+
+            }
+        }
+
+    }
+
+
+
+    private boolean isValid(HashSet<Integer> col, HashSet<Integer> row, List<Integer> box, int num) {
+        if (col.contains(num) || row.contains(num) || box.contains(num)) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public void printArr() {
+        for (int i = 0; i < 9; i++) {
+            ArrayList<Integer> currList = solution.get(i);
+            for (int j = 0; j < 9; j++) {
+                if (j % 3 == 0) {
+                    System.out.println();
+                }
+                System.out.print(currList.get(j) + " ");
+            }
+            System.out.println();
+
+        }
+    }
+
+    private void initializeSets() {
+
+        List<ArrayList<Integer>> newPuzzle = new ArrayList<ArrayList<Integer>>();
+
+
+        ArrayList<Integer> row0 = new ArrayList<Integer>();
+        allRows.add(row0);
+        ArrayList<Integer> row1 = new ArrayList<Integer>();
+        allRows.add(row1);
+        ArrayList<Integer> row2 = new ArrayList<Integer>();
+        allRows.add(row2);
+        ArrayList<Integer> row3 = new ArrayList<Integer>();
+        allRows.add(row3);
+        ArrayList<Integer> row4 = new ArrayList<Integer>();
+        allRows.add(row4);
+        ArrayList<Integer> row5 = new ArrayList<Integer>();
+        allRows.add(row5);
+        ArrayList<Integer> row6 = new ArrayList<Integer>();
+        allRows.add(row6);
+        ArrayList<Integer> row7 = new ArrayList<Integer>();
+        allRows.add(row7);
+        ArrayList<Integer> row8 = new ArrayList<Integer>();
+        allRows.add(row8);
+
+        ArrayList<Integer> col0 = new ArrayList<Integer>();
+        allCols.add(col0);
+        ArrayList<Integer> col1 = new ArrayList<Integer>();
+        allCols.add(col1);
+        ArrayList<Integer> col2 = new ArrayList<Integer>();
+        allCols.add(col2);
+        ArrayList<Integer> col3 = new ArrayList<Integer>();
+        allCols.add(col3);
+        ArrayList<Integer> col4 = new ArrayList<Integer>();
+        allCols.add(col4);
+        ArrayList<Integer> col5 = new ArrayList<Integer>();
+        allCols.add(col5);
+        ArrayList<Integer> col6 = new ArrayList<Integer>();
+        allCols.add(col6);
+        ArrayList<Integer> col7 = new ArrayList<Integer>();
+        allCols.add(col7);
+        ArrayList<Integer> col8 = new ArrayList<Integer>();
+        allCols.add(col8);
 
     }
 
